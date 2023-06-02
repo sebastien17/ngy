@@ -45,13 +45,17 @@ def convert_coord(long_lat, matrix_data, zoom, projection):
     """convert decimals coords into Web Mercator coords into tile coords"""
     # See https://geoservices.ign.fr/documentation/geoservices/wmts.html
 
-    proj_4326 = pyproj.Proj(init='epsg:4326')
+    #proj_4326 = pyproj.Proj(init='epsg:4326')
 
-    final_proj = pyproj.Proj(init=matrix_data[projection]['supportedcrs'])
+    #final_proj = pyproj.Proj(init=matrix_data[projection]['supportedcrs'])
+
+    transformer = pyproj.Transformer.from_crs('EPSG:4326', matrix_data[projection]['supportedcrs'])
     tile_res = matrix_data[projection][str(zoom)] * 256  # 256 pixel per tile
 
     # Web Mercator
-    (x, y) = pyproj.transform(proj_4326, final_proj, long_lat[0], long_lat[1])
+    #(x, y) = pyproj.transform(proj_4326, final_proj, long_lat[0], long_lat[1])
+    (x, y) = transformer.transform( long_lat[1], long_lat[0])
+
 
     # Get the top left corner
     (x0, y0) = (matrix_data[projection]['X_ref'], matrix_data[projection]['Y_ref'])
