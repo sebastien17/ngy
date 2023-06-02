@@ -2,10 +2,24 @@
 Create MBTiles from IGN maps
 
 ## Installation
-Compatible with Python 3.10 +
 
 pip install ngy
 
 ## Usage
 
-see examples
+Script:
+
+    SYNOPSIS
+        locus LAT1 LONG1 LAT2 LONG2 POSITION_NAME
+
+    POSITIONAL ARGUMENTS
+        LAT1
+            Type: float
+        LONG1
+            Type: float
+        LAT2
+            Type: float
+        LONG2
+            Type: float
+        POSITION_NAME
+            Type: str
